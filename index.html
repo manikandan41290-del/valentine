@@ -12,7 +12,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #ff9ec4, #ffc1dd);
+    background: linear-gradient(135deg, #ff9acb, #ff6fa5);
     font-family: Arial, sans-serif;
 }
 
@@ -21,45 +21,47 @@ body {
     padding: 40px;
     border-radius: 20px;
     text-align: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    position: relative;
     width: 320px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    position: relative;
 }
 
 h2 {
     margin-bottom: 20px;
 }
 
-button {
-    padding: 10px 25px;
+.yes-btn {
+    background: linear-gradient(45deg, #ff4d88, #ff0066);
     border: none;
+    padding: 12px 25px;
     border-radius: 25px;
+    color: white;
     font-size: 16px;
     cursor: pointer;
     margin: 10px;
-    transition: 0.3s;
-}
-
-.yes-btn {
-    background: #ff4d88;
-    color: white;
-}
-
-.yes-btn:hover {
-    background: #ff1a66;
 }
 
 .no-btn {
-    background: #eee;
-    position: absolute;
+    background: #ddd;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    position: relative;
 }
 
-#resultText {
-    display: none;
+.note {
+    font-size: 14px;
+    color: #555;
+    margin-top: 10px;
+}
+
+#successMsg {
     margin-top: 20px;
-    font-size: 18px;
-    color: #ff0066;
+    font-size: 16px;
     font-weight: bold;
+    display: none;
 }
 </style>
 </head>
@@ -67,39 +69,37 @@ button {
 <body>
 
 <div class="card">
-    <h2>🐱💗 Will you be my Valentine?</h2>
+    <h2>🐱💖 Will you be my Valentine?</h2>
 
-    <button class="yes-btn" onclick="showText()">Yes 💖</button>
+    <button class="yes-btn" onclick="showLove()">Yes ✨</button>
 
-    <p style="font-size:14px; color:gray; margin-top:5px;">
-        (No is a little shy 😈)
-    </p>
+    <div class="note">(No is a little shy 😈)</div>
 
-    <button class="no-btn" id="noBtn" onmouseover="moveButton()">No 😳</button>
+    <button class="no-btn" onmouseover="moveButton()">No 😳</button>
 
-    <div id="resultText">
-        Yaaay!!! 💕  
-        Love + Friendship forever 🥰✨
-    </div>
+    <div id="successMsg"></div>
 </div>
 
 <script>
-function moveButton() {
-    const button = document.getElementById("noBtn");
-    const card = document.querySelector(".card");
+function showLove() {
+    document.getElementById("successMsg").innerHTML =
+    "✅ OFFICIALLY CONFIRMED 💖<br><br>" +
+    "You are now my Valentine 💍<br>" +
+    "AND my Best Friend 🫶<br><br>" +
+    "Government approved ✔<br>" +
+    "Supreme Court final decision 👩‍⚖️<br>" +
+    "No refund ❌<br>" +
+    "No cancellation 🚫<br>" +
+    "Lifetime contract signed ✍️😌";
 
-    const maxX = card.clientWidth - button.offsetWidth;
-    const maxY = card.clientHeight - button.offsetHeight;
-
-    const randomX = Math.floor(Math.random() * maxX);
-    const randomY = Math.floor(Math.random() * maxY);
-
-    button.style.left = randomX + "px";
-    button.style.top = randomY + "px";
+    document.getElementById("successMsg").style.display = "block";
 }
 
-function showText() {
-    document.getElementById("resultText").style.display = "block";
+function moveButton() {
+    const btn = document.querySelector(".no-btn");
+    const x = Math.random() * 200 - 100;
+    const y = Math.random() * 150 - 75;
+    btn.style.transform = `translate(${x}px, ${y}px)`;
 }
 </script>
 
